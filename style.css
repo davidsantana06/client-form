@@ -1,3 +1,12 @@
+.form-label {
+    font-size: smaller;
+    text-transform: uppercase;
+}
+
+.form-control {
+    font-size: medium;
+}
+
 .form-control:focus {
     box-shadow: none !important;
 }
