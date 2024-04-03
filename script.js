@@ -49,6 +49,5 @@ document.querySelector('form').addEventListener('submit', function (event) {
         return;
     }
 
-    // Se todas as validações passarem, o formulário será submetido
     alert('Dados válidos! O formulário não será submetido.');
 });
