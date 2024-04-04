@@ -12,7 +12,7 @@
 
 <body>
     <main class="container my-5">
-        <form>
+        <form action="https://jkorpela.fi/cgi-bin/echo.cgi" method="POST">
             <h5 class="mb-0">Cadastrar Cliente</h5>
             <p class="mb-4">Para cadastrar um cliente, preencha os campos abaixo.</p>
             <div class="mb-3">
@@ -37,11 +37,11 @@
             <div class="d-flex mb-4">
                 <div class="w-100 me-2">
                     <label for="password" class="form-label mb-1">Senha</label>
-                    <input type="password" class="form-control" id="password" minlength="8" maxlength="30">
+                    <input type="password" class="form-control" id="password" minlength="8" maxlength="20">
                 </div>
                 <div class="w-100">
                     <label for="confirm-password" class="form-label mb-1">Confirmar senha</label>
-                    <input type="password" class="form-control" id="confirm-password" minlength="8" maxlength="30">
+                    <input type="password" class="form-control" id="confirm-password" minlength="8" maxlength="20">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary rounded-0 me-1">Enviar</button>

@@ -1,6 +1,7 @@
 const NAME_REGEX = /^[a-zA-Z\s]+$/;
 const CPF_REGEX = /^[0-9]+$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PASSWORD_REGEX = /\S+/;
 
 const nameInput = document.getElementById('name');
 const cpfInput = document.getElementById('cpf');
@@ -32,7 +33,7 @@ document.querySelector('form').addEventListener('submit', (event) => {
         return (isNaN(birthdateInst) || birthdateInst >= currentDate );
     }
     const emailIsInvalid = (email) => { return !email || email.length > 255 || !EMAIL_REGEX.test(email); }
-    const passwordIsInvalid = (password) => { return !password || password.length < 8 || password.length > 30; }
+    const passwordIsInvalid = (password) => { return !password || password.length < 8 || password.length > 20 || !PASSWORD_REGEX.test(password); }
     const confirmPasswordIsInvalid = (password, confirmPassword) => { return !confirmPassword || password !== confirmPassword; }
 
     const name = String(nameInput.value).trim();
@@ -65,7 +66,7 @@ document.querySelector('form').addEventListener('submit', (event) => {
     }
 
     if (passwordIsInvalid(password)) {
-        alert('SENHA INVÁLIDA!\nA senha deve ter entre 8 e 30 caracteres.');
+        alert('SENHA INVÁLIDA!\nA senha deve ter entre 8 e 20 caracteres.');
         return;
     }
 
