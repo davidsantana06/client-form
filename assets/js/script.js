@@ -1,8 +1,3 @@
-const NAME_REGEX = /^[a-zA-Z\s]+$/;
-const CPF_REGEX = /^[0-9]+$/;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PASSWORD_REGEX = /\S+/;
-
 const nameInput = document.getElementById('name');
 const cpfInput = document.getElementById('cpf');
 const birthdateInput = document.getElementById('birthdate');
@@ -10,31 +5,47 @@ const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirm-password');
 
-
 [cpfInput, emailInput, passwordInput, confirmPasswordInput].forEach(input => {
     input.addEventListener('keydown', (event) => {
         if (event.key === ' ') { event.preventDefault(); }
     })
 });
 
-
-document.getElementById('cpf').addEventListener('input', (event) => {
+cpfInput.addEventListener('input', (event) => {
     const maskedCpf = event.target.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4");
     event.target.value = maskedCpf;
 });
 
-
 document.querySelector('form').addEventListener('submit', (event) => {
-    const nameIsInvalid = (name) => { return !name || name.length > 50 || !NAME_REGEX.test(name); }
-    const cpfIsInvalid = (cpf) => { return !cpf || cpf.length !== 11 || !CPF_REGEX.test(cpf); }
+    const nameIsInvalid = (name) => {
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        return !name || name.length > 50 || !nameRegex.test(name); 
+    }
+
+    const cpfIsInvalid = (cpf) => {
+        const cpfRegex = /^[0-9]+$/;
+        return !cpf || cpf.length !== 11 || !cpfRegex.test(cpf); 
+    }
+
     const birthdateIsInvalid = (birthdate) => { 
         const currentDate = new Date();
         const birthdateInst = new Date(birthdate);
         return (isNaN(birthdateInst) || birthdateInst >= currentDate );
     }
-    const emailIsInvalid = (email) => { return !email || email.length > 255 || !EMAIL_REGEX.test(email); }
-    const passwordIsInvalid = (password) => { return !password || password.length < 8 || password.length > 20 || !PASSWORD_REGEX.test(password); }
-    const confirmPasswordIsInvalid = (password, confirmPassword) => { return !confirmPassword || password !== confirmPassword; }
+
+    const emailIsInvalid = (email) => { 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return !email || email.length > 255 || !emailRegex.test(email); 
+    }
+
+    const passwordIsInvalid = (password) => { 
+        const passwordRegex = /\S+/;
+        return !password || password.length < 8 || password.length > 20 || !passwordRegex.test(password); 
+    }
+
+    const confirmPasswordIsInvalid = (password, confirmPassword) => { 
+        return !confirmPassword || password !== confirmPassword; 
+    }
 
     const name = String(nameInput.value).trim();
     const cpf = String(cpfInput.value).replace(/\D/g, '');
